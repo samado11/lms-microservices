@@ -7,7 +7,7 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: reportingAnalytics
-          uri: lb:http://CUSTOMER-SERVICE
+        - id: reportingAnalyticsService
+          uri: lb:http://REPORTINGANALYTICSSERVICE
           predicates:
             - Path=/reportingAnalytics/**
