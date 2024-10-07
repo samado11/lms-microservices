@@ -1,7 +1,8 @@
-package com.lms.AuthService.service;
+package com.lms.gatewayService.service;
 
-import com.lms.AuthService.entity.User;
-import com.lms.AuthService.repository.UserRepository;
+
+import com.lms.gatewayService.entity.User;
+import com.lms.gatewayService.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

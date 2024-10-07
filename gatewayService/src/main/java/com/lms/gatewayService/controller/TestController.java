@@ -1,4 +1,4 @@
-package com.lms.reportingAnalyticsService.controller;
+package com.lms.gatewayService.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class TestController {
 
-    @GetMapping("/sayhellooo")
+    @GetMapping("/sayhello")
     public String getAuditingActions(){
         return "HELLO RAMZYYYYY";
     }
