@@ -1,7 +1,10 @@
+
 server:
   port: 8082
   servlet:
     context-path: /reportingAnalytics
 spring:
+  application:
+    name: reportingAnalyticsService
   profiles:
     active: native

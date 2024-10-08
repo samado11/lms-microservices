@@ -3,11 +3,10 @@ package com.lms.gatewayService.controller;
 
 import com.lms.gatewayService.dto.AuthRequest;
 import com.lms.gatewayService.entity.User;
+import com.lms.gatewayService.repository.UserRepository;
 import com.lms.gatewayService.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +16,11 @@ public class AuthController {
     private AuthService service;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private UserRepository userRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
 
     @PostMapping("/register")
     public String addNewUser(@RequestBody User user) {
@@ -26,12 +29,15 @@ public class AuthController {
 
     @PostMapping("/token")
     public String getToken(@RequestBody AuthRequest authRequest) {
-        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
-        if (authenticate.isAuthenticated()) {
+        String storedPassword = userRepository.findByEmail(authRequest.getEmail()).get().getPassword();
+
+        if (storedPassword != null && passwordEncoder.matches(authRequest.getPassword(),storedPassword)) {
             return service.generateToken(authRequest.getEmail());
         } else {
-            throw new RuntimeException("invalid access");
+           return "Invalid username or password";
         }
+
+
     }
 
     @GetMapping("/validate")

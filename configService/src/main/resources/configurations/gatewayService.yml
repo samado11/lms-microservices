@@ -1,3 +1,4 @@
+
 server:
   port: 8222
 
@@ -7,25 +8,9 @@ spring:
     username: CloudSA96eccfc5@lms19
     password: Nozom@2020
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  application:
+    name: gatewayService
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-  cloud:
-    gateway:
-        routes:
-          - id: reportingAnalyticsService
-            uri: lb:http://REPORTINGANALYTICSSERVICE
-            predicates:
-              - Path=/reportingAnalytics/**
-          - id: userManagementService
-            uri: lb:http://USERMANAGEMENTSERVICE
-            predicates:
-              - Path=/user/**
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-    registerWithEureka: true
-    fetchRegistry: true
