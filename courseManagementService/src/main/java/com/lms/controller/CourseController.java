@@ -11,6 +11,10 @@ import java.util.UUID;
 public class CourseController {
 @Autowired
     private CourseService courseService;
+@GetMapping("/hello")
+public String hello(){
+    return "hello";
+}
 @PostMapping("/courses")
     public void createCourse(@RequestBody CourseModel courseModel){
     courseService.createCourse(courseModel);
