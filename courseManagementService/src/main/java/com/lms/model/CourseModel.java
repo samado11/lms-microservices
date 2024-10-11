@@ -1,16 +1,14 @@
 package com.lms.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.sql.Timestamp;
 import java.util.UUID;
 
 @Data
-@Table(name = "courses")
+@Entity
+@Table(name = "coursess")
 public class CourseModel {
 @Id
     @GeneratedValue(strategy = GenerationType.UUID)
