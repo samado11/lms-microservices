@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 import java.util.UUID;
 
 @Data
-@Table
+@Table(name = "courses")
 public class CourseModel {
 @Id
     @GeneratedValue(strategy = GenerationType.UUID)
