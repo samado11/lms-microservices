@@ -4,9 +4,21 @@ spring:
     username: CloudSA96eccfc5@lms19
     password: Nozom@2020
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+
   application:
     name: courseManagementService
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  cloud:
+    config:
+      enabled: false
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
