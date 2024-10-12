@@ -1,0 +1,43 @@
+{
+  "properties": [
+    {
+      "name": "Server",
+      "type": "java.lang.String",
+      "description": "Description for Server."
+    },
+    {
+      "name": "initial",
+      "type": "java.lang.String",
+      "description": "Description for initial."
+    },
+    {
+      "name": "Password",
+      "type": "java.lang.String",
+      "description": "Description for Password."
+    },
+    {
+      "name": "MultiPleActiveeResultsets",
+      "type": "java.lang.String",
+      "description": "Description for MultiPleActiveeResultsets."
+    },
+    {
+      "name": "User",
+      "type": "java.lang.String",
+      "description": "Description for User."
+    },
+    {
+      "name": "Persist",
+      "type": "java.lang.String",
+      "description": "Description for Persist."
+    },
+    {
+      "name": "TrustServerCertificate",
+      "type": "java.lang.String",
+      "description": "Description for TrustServerCertificate."
+    },
+    {
+      "name": "Connection",
+      "type": "java.lang.String",
+      "description": "Description for Connection."
+    }
+  ] }
