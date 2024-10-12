@@ -13,7 +13,6 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @ToString
 @SuperBuilder
-@NoArgsConstructor
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Lesson extends BaseEntity {
@@ -25,11 +24,12 @@ public class Lesson extends BaseEntity {
     @Column(nullable=false)
     private String title;
 
-    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private ContentType contentType;
 
     private String contentUrl;
 
-    private int order;
+    @Column(name = "\"order\"")
+    private Integer order;
 
 }

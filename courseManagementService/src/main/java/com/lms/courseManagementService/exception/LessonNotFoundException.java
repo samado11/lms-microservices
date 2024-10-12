@@ -5,7 +5,7 @@ import jakarta.persistence.EntityNotFoundException;
 import java.util.UUID;
 
 public class LessonNotFoundException extends EntityNotFoundException {
-    public LessonNotFoundException(UUID id) {
+    public LessonNotFoundException(Long id) {
         super("Lesson not found with id: " + id);
     }
 

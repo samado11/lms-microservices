@@ -22,20 +22,20 @@ public class LessonController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LessonResponse> getLesson(@PathVariable UUID id) {
+    public ResponseEntity<LessonResponse> getLesson(@PathVariable Long id) {
         return ResponseEntity.ok(lessonService.getById(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<LessonResponse> updateLesson(
-            @PathVariable UUID id,
+            @PathVariable Long id,
             @Validated @RequestBody LessonRequest lessonRequest
     ) {
         return ResponseEntity.ok(lessonService.update(id, lessonRequest));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteLesson(@PathVariable UUID id) {
+    public ResponseEntity<Void> deleteLesson(@PathVariable Long id) {
         lessonService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

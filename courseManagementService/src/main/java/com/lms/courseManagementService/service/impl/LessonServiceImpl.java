@@ -30,26 +30,26 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     @Transactional
-    public LessonResponse update(UUID id, LessonRequest lessonRequest) {
+    public LessonResponse update(Long id, LessonRequest lessonRequest) {
         Lesson existingLesson = this.findLessonById(id);
         lessonMapper.update(lessonRequest, existingLesson);
         return lessonMapper.toResponse(existingLesson);
     }
 
     @Override
-    public LessonResponse getById(UUID id) {
+    public LessonResponse getById(Long id) {
         return lessonMapper.toResponse(this.findLessonById(id));
     }
 
     @Override
     @Transactional
-    public void deleteById(UUID id) {
+    public void deleteById(Long id) {
         Lesson lesson = findLessonById(id);
         lessonRepository.delete(lesson);
     }
 
     // helper methods
-    private Lesson findLessonById(UUID id) {
+    private Lesson findLessonById(Long id) {
         return lessonRepository.findById(id)
                 .orElseThrow(() -> new LessonNotFoundException(id));
     }

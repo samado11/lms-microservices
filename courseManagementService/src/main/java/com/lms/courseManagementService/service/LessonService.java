@@ -8,9 +8,9 @@ import java.util.UUID;
 public interface LessonService {
     LessonResponse save(LessonRequest lessonRequest);
 
-    LessonResponse update(UUID id, LessonRequest lessonRequest);
+    LessonResponse update(Long id, LessonRequest lessonRequest);
 
-    LessonResponse getById(UUID id);
+    LessonResponse getById(Long id);
 
-    void deleteById(UUID id);
+    void deleteById(Long id);
 }

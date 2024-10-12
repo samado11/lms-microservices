@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Builder
 public record LessonResponse(
-        UUID id,
+        Long id,
         String title,
         ContentType contentType,
         String contentUrl,
