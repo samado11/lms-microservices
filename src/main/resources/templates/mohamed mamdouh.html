@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        table, th, td{
+            border: 1px solid black;
+            text-align: center;   
+            min-height: 100vh;    
+        }
+    </style>
+    <body>
+        <title> Welcome To Our First Store</title>
+
+
+<h2>Staff Details</h2>
+<table style="width:100%">
+    <tr>
+        <th>Name</th>
+        <th>Title</th>
+        <th>Salary</th>
+
+    </tr>
+    
+    <tr th:each=" onestaff: ${staff}">
+        <td th:text="${onestaff.name}"></td>
+        <td th:text="${onestaff.title}"></td>
+        <td th:text="${onestaff.Salary}"></td>
+        <td> <a role="button" th:href="@{/(id=${onestaff.id})}">Update</a></td>
+
+
+    </tr>
+
+</table>
+
+</body>
+</html>

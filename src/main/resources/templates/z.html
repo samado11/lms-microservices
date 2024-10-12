@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    
+    <body>
+        <title> Welcome To Our First Store</title>
+
+
+<h2>Staff Details</h2>
+<div class="center_screen">
+    
+    <form method="post" th:object="${staff}" th:action="@{/savestaff}">
+
+    <label for="name">name</label><br>
+    <p th:errors="*{name}"></p>
+    <input type="text" placeholder="name" th:field="*{name}">
+    <br><br><br>    
+
+    
+    <label for="title">title</label><br>
+    <p th:errors="*{title}"></p>
+    <input type="text" placeholder="title" th:field="*{title}">
+    <br><br>    
+
+   
+    <label for="salary">Salary</label><br>
+    <p th:errors="*{salary}"></p>
+    <input type="text" placeholder="salary" th:field="*{salary}">
+    <input type="hidden" th:field="id">
+    <br><br>   
+
+    <input type="submit" value="submit">
+
+    </form>
+
+</div>
+
+</body>
+</html>
