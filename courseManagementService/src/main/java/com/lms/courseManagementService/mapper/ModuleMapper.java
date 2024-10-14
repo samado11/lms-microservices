@@ -37,7 +37,9 @@ public class ModuleMapper {
     }
 
     public static Module toEntity(ModuleDTO moduleDTO) {
-        List<Lesson> lessons = moduleDTO.getLessons().stream()
+        List<Lesson> lessons = Optional.ofNullable(moduleDTO.getLessons())
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(lessonDTO -> new Lesson(lessonDTO.getTitle()))
                 .collect(Collectors.toList());
 
@@ -47,11 +49,12 @@ public class ModuleMapper {
         module.setDescription(moduleDTO.getDescription());
         module.setOrder(moduleDTO.getOrder());
 
-        Course course = new Course();
-        course.setId(moduleDTO.getCourseId());
-        course.setTitle(moduleDTO.getCourseTitle());
-        module.setCourse(course);
-
+        if (moduleDTO.getCourseId() != null || moduleDTO.getCourseTitle() != null) {
+            Course course = new Course();
+            course.setId(moduleDTO.getCourseId());
+            course.setTitle(moduleDTO.getCourseTitle());
+            module.setCourse(course);
+        }
 
         lessons.forEach(lesson -> {
             lesson.setModule(module);
