@@ -1,15 +1,15 @@
 spring:
-#  datasource:
-#    url: jdbc:sqlserver://lms19.database.windows.net:1433;database=course_management_db;
-#    username: CloudSA96eccfc5@lms19
-#    password: Nozom@2020
-#    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-#  application:
-#    name: courseManagementService
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: true
+  datasource:
+    url: jdbc:sqlserver://lms19.database.windows.net:1433;database=course_management_db;
+    username: CloudSA96eccfc5@lms19
+    password: Nozom@2020
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  application:
+    name: courseManagementService
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
 
 
   cloud:
@@ -18,10 +18,10 @@ spring:
       import-check:
         enabled: false
 
-  datasource:
-    url: jdbc:h2:mem:mydb
-    username: sa
-    password: password
-    driverClassName: org.h2.Driver
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+#  datasource:
+#    url: jdbc:h2:mem:mydb
+#    username: sa
+#    password: password
+#    driverClassName: org.h2.Driver
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
