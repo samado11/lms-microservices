@@ -24,10 +24,8 @@ public class ModuleController {
 
     @GetMapping("/all")
     public ResponseEntity<List<ModuleDTO>> getAll() {
-        List<Module> modules = moduleService.getAllModules();
-        List<ModuleDTO> moduleDTOS = modules.stream()
-                .map(ModuleMapper :: toDTO)
-                .collect(Collectors.toList());
+
+        List<ModuleDTO> moduleDTOS = moduleService.getAllModules();
 
         return ResponseEntity.ok(moduleDTOS);
 
@@ -36,10 +34,12 @@ public class ModuleController {
     @GetMapping("/{moduleId}")
     public ResponseEntity<ApiResponse> getModuleById(@PathVariable("moduleId") Long moduleId) {
         try {
-            Module module = moduleService.getModuleById(moduleId);
-            ModuleDTO moduleDTO = ModuleMapper.toDTO(module);
+
+            ModuleDTO moduleDTO = moduleService.getModuleById(moduleId);;
             return ResponseEntity.ok(new ApiResponse(moduleDTO));
+
         } catch (ModuleNotFoundException e) {
+
             return ResponseEntity.status(NOT_FOUND).body(new ApiResponse(e.getMessage()));
         }
     }
@@ -48,10 +48,12 @@ public class ModuleController {
     public ResponseEntity<ApiResponse> createModule(@RequestBody ModuleDTO moduleDTO) {
 
         try {
-            Module module = moduleService.addModule(moduleDTO);
-            ModuleDTO response = ModuleMapper.toDTO(module);
+
+            ModuleDTO response = moduleService.addModule(moduleDTO);
             return ResponseEntity.ok(new ApiResponse(response));
+
         } catch (Exception e) {
+
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(new ApiResponse(e.getMessage(), null));
         }
     }
@@ -59,9 +61,10 @@ public class ModuleController {
     @PutMapping("/{moduleID}")
     public ResponseEntity<ApiResponse> updateModule(@PathVariable("moduleID") Long moduleID, @RequestBody ModuleDTO moduleDTO) {
         try {
-            Module module = moduleService.updateModule(moduleID, moduleDTO);
-            ModuleDTO response = ModuleMapper.toDTO(module);
+
+            ModuleDTO response = moduleService.updateModule(moduleID, moduleDTO);
             return ResponseEntity.ok(new ApiResponse(response));
+
         } catch (ModuleNotFoundException e) {
             return ResponseEntity.status(NOT_FOUND).body(new ApiResponse(e.getMessage(),null));
         }
@@ -80,13 +83,11 @@ public class ModuleController {
     @GetMapping("/by-course")
     public ResponseEntity<ApiResponse> getByCourse(@RequestParam("courseTitle") String courseTitle) {
         try {
-            List<Module> modules = moduleService.getModulesByCourseTitle(courseTitle);
-            if(modules.isEmpty()) {
+            List<ModuleDTO> moduleDTOS = moduleService.getModulesByCourseTitle(courseTitle);
+            if(moduleDTOS.isEmpty()) {
                 return ResponseEntity.ok().body(new ApiResponse("No Modules Found", null));
             }
-            List<ModuleDTO> moduleDTOS = modules.stream()
-                    .map(ModuleMapper :: toDTO)
-                    .collect(Collectors.toList());
+
             return ResponseEntity.ok(new ApiResponse(moduleDTOS));
         } catch (Exception e) {
             return ResponseEntity.ok(new ApiResponse(e.getMessage(),null));

@@ -6,12 +6,16 @@ import com.lms.courseManagementService.model.Course;
 import com.lms.courseManagementService.model.Lesson;
 import com.lms.courseManagementService.model.Module;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ModuleMapper {
     public static ModuleDTO toDTO(Module module) {
-        List<LessonDTO> lessonDTOs = module.getLessons().stream()
+        List<LessonDTO> lessonDTOs = Optional.ofNullable(module.getLessons())
+                .orElse(Collections.emptyList())
+                .stream()
                 .map(lesson -> new LessonDTO(
                         lesson.getId(),
                         lesson.getTitle(),

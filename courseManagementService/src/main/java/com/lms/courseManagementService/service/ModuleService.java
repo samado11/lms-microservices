@@ -32,15 +32,18 @@ public class ModuleService {
     private final CoursesRepository coursesRepository;
 
 
-    public List<Module> getAllModules() {
+    public List<ModuleDTO> getAllModules() {
 
-        return modulesRepository.findAll();
+        return modulesRepository.findAll()
+                .stream().map(ModuleMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
-    public Module getModuleById(Long id) {
+    public ModuleDTO getModuleById(Long id) {
 
-        return modulesRepository.findById(id)
+        Module module = modulesRepository.findById(id)
                 .orElseThrow(() -> new ModuleNotFoundException("Module Not Found!"));
+        return ModuleMapper.toDTO(module);
     }
 
     @Transactional
@@ -52,7 +55,7 @@ public class ModuleService {
     }
 
     @Transactional
-    public Module addModule(ModuleDTO request) {
+    public ModuleDTO addModule(ModuleDTO request) {
 
         List<Lesson> lessons = Optional.ofNullable(request.getLessons())
                 .orElse(Collections.emptyList())
@@ -64,7 +67,7 @@ public class ModuleService {
                     } else {
 
                         Lesson newLesson = new Lesson(lessonDTO.getTitle());
-                        newLesson.setContent_url(lessonDTO.getContent_url());
+                        newLesson.setContent_url(lessonDTO.getContentUrl());
                         newLesson.setOrder(lessonDTO.getOrder());
                         return lessonsRepository.save(newLesson);
                     }
@@ -80,14 +83,15 @@ public class ModuleService {
         Module module = ModuleMapper.toEntity(request);
         module.setLessons(lessons);
         module.setCourse(course);
-        return modulesRepository.save(module);
+        Module savedModule = modulesRepository.save(module);
+        return ModuleMapper.toDTO(savedModule);
 
     }
 
 
 
     @Transactional
-    public Module updateModule(Long id, ModuleDTO request) {
+    public ModuleDTO updateModule(Long id, ModuleDTO request) {
         Module existingModule = modulesRepository.findById(id)
                 .orElseThrow(() -> new ModuleNotFoundException("Module Not Found!"));
         existingModule.setTitle(request.getTitle());
@@ -109,7 +113,7 @@ public class ModuleService {
                 .map(lessonDTO -> lessonsRepository.findById(lessonDTO.getId())
                         .orElseGet(() -> {
                             Lesson newLesson = new Lesson(lessonDTO.getTitle());
-                            newLesson.setContent_url(lessonDTO.getContent_url());
+                            newLesson.setContent_url(lessonDTO.getContentUrl());
                             newLesson.setOrder(lessonDTO.getOrder());
                             return lessonsRepository.save(newLesson);
                         }))
@@ -117,12 +121,16 @@ public class ModuleService {
 
         existingModule.setLessons(updatedLessons);
 
-        return modulesRepository.save(existingModule);
+        Module updatedModule = modulesRepository.save(existingModule);
+        return ModuleMapper.toDTO(updatedModule);
     }
 
-    public List<Module> getModulesByCourseTitle(String courseTitle) {
+    public List<ModuleDTO> getModulesByCourseTitle(String courseTitle) {
 
-        return modulesRepository.findByCourseTitle(courseTitle);
+        return modulesRepository.findByCourseTitle(courseTitle)
+                .stream()
+                .map(ModuleMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
 

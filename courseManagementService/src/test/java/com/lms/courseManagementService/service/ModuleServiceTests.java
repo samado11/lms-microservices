@@ -54,7 +54,7 @@ public class ModuleServiceTests {
         when(modulesRepository.save(Mockito.any(Module.class))).thenReturn(expectedModule);
 
 
-        Module savedModule = moduleService.addModule(moduleDTO);
+        ModuleDTO savedModule = moduleService.addModule(moduleDTO);
 
 
         Assertions.assertNotNull(savedModule, "Saved module should not be null");
@@ -80,7 +80,7 @@ public class ModuleServiceTests {
 
         when(modulesRepository.findAll()).thenReturn(modules);
 
-        List<Module> retrievedModules = moduleService.getAllModules();
+        List<ModuleDTO> retrievedModules = moduleService.getAllModules();
 
         Assertions.assertNotNull(retrievedModules);
         verify(modulesRepository).findAll();
@@ -95,7 +95,7 @@ public class ModuleServiceTests {
         module1.setDescription("Description for Module 1");
         module1.setOrder(1);
         when(modulesRepository.findById(module1.getId())).thenReturn(Optional.of(module1));
-        Module retrievedModule = moduleService.getModuleById(module1.getId());
+        ModuleDTO retrievedModule = moduleService.getModuleById(module1.getId());
         Assertions.assertNotNull(retrievedModule);
 
     }
@@ -132,7 +132,7 @@ public class ModuleServiceTests {
         when(modulesRepository.findById(module1.getId())).thenReturn(Optional.of(module1));
         when(modulesRepository.save(module1)).thenReturn(module1);
 
-        Module updatedModule = moduleService.updateModule(module1.getId(),moduleDTO);
+        ModuleDTO updatedModule = moduleService.updateModule(module1.getId(),moduleDTO);
         Assertions.assertNotNull(updatedModule);
     }
 
@@ -162,7 +162,7 @@ public class ModuleServiceTests {
 
         when(modulesRepository.findByCourseTitle(courseTitle)).thenReturn(expectedModules);
 
-        List<Module> actualModules = moduleService.getModulesByCourseTitle(courseTitle);
+        List<ModuleDTO> actualModules = moduleService.getModulesByCourseTitle(courseTitle);
 
         Assertions.assertNotNull(actualModules);
 
