@@ -12,11 +12,7 @@ import java.util.UUID;
 public class CourseController {
     @Autowired
     private CourseService courseService;
-    @GetMapping("/hello")
-    public String hello() {
-        System.out.println("hello");
-        return "hello";
-    }
+
     @GetMapping("/courses")
     public List<CourseModel> getAllCourses() {
         System.out.println("get courses");
