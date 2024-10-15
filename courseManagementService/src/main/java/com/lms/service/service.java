@@ -1,6 +1,6 @@
 package com.lms.service;
 
-import com.lms.Repositry.Leo_Repo;
+import repo.Leo_Repo;
 import com.lms.courseManagementService.ResourceNotFoundException;
 import com.lms.courseManagementService.lesson;
 import org.springframework.web.bind.annotation.PathVariable;
