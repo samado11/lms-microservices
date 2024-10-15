@@ -1,6 +1,6 @@
-package controller;
+package com.lms.controller;
 
-import repo.Leo_Repo;
+import com.lms.repo.Leo_Repo;
 import com.lms.service.service;
 import com.lms.courseManagementService.lesson;
 import org.springframework.web.bind.annotation.*;
