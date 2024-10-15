@@ -1,4 +1,4 @@
-package com.lms.courseManagementService;
+package com.lms.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
