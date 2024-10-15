@@ -2,7 +2,7 @@ package com.lms.controller;
 
 import com.lms.repo.Leo_Repo;
 import com.lms.service.service;
-import com.lms.courseManagementService.lesson;
+import com.lms.model.lesson;
 import org.springframework.web.bind.annotation.*;
 
 public class lessonController {
