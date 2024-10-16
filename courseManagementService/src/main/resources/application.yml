@@ -10,3 +10,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+
+  cloud:
+    config:
+      enabled: false
+      import-check:
+        enabled: false
