@@ -1,19 +1,5 @@
 spring:
-  datasource:
-    url: jdbc:sqlserver://lms19.database.windows.net:1433;database=course_management_db;
-    username: CloudSA96eccfc5@lms19
-    password: Nozom@2020
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  config:
+    import: optional:configserver:http://localhost:8888
   application:
     name: courseManagementService
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-
-
-  cloud:
-    config:
-      enabled: false
-      import-check:
-        enabled: false
