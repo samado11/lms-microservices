@@ -1,12 +1,13 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://lms19.database.windows.net:1433;database=course_management_db;
-    username: CloudSA96eccfc5@lms19
-    password: Nozom@2020
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:postgresql://ep-restless-waterfall-a2y59272.eu-central-1.aws.neon.tech/courseManagement
+    username: courseManagement_owner
+    password: v5nCxNmWLR7q
+    driver-class-name: org.postgresql.Driver
   application:
     name: courseManagementService
   jpa:
-    hibernate:
-      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true

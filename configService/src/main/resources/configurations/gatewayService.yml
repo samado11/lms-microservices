@@ -4,10 +4,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:sqlserver://lms19.database.windows.net:1433;database=user_management_db;
-    username: CloudSA96eccfc5@lms19
-    password: Nozom@2020
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:postgresql://ep-noisy-truth-a8tqg0go.eastus2.azure.neon.tech/userManagement
+    username: userManagement_owner
+    password: YPBSExVb04Ay
+    driver-class-name: org.postgresql.Driver
   application:
     name: gatewayService
   jpa:
