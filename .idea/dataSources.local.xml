@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-241.18034.62">
+    <data-source name="sqlserver@lms19.database.windows.net" uuid="8ff37cf3-03f5-4fe7-96d1-a1d357f23462">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MSSQL" />
+      <user-name>CloudSA96eccfc5@lms19</user-name>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>
