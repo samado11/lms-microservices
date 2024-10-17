@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://ep-restless-waterfall-a2y59272.eu-central-1.aws.neon.tech/courseManagement
-    username: courseManagement_owner
-    password: v5nCxNmWLR7q
+    url: jdbc:postgresql://ep-noisy-truth-a8tqg0go.eastus2.azure.neon.tech/courseManagementService
+    username: userManagement_owner
+    password: YPBSExVb04Ay
     driver-class-name: org.postgresql.Driver
   application:
     name: courseManagementService

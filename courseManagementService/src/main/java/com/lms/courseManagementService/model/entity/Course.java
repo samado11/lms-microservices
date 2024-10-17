@@ -1,13 +1,10 @@
-package com.lms.courseManagementService.model;
+package com.lms.courseManagementService.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Getter
@@ -25,8 +22,6 @@ public class Course {
     private String category;
 
 
-    @OneToMany(mappedBy = "course")
-    List<Module> modules;
 
     public Course(String title) {
         this.title = title;

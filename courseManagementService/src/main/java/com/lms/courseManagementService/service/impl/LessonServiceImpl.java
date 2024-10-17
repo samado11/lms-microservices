@@ -1,28 +1,25 @@
 package com.lms.courseManagementService.service.impl;
 
+import com.lms.courseManagementService.dto.LessonDTO;
 import com.lms.courseManagementService.exception.LessonNotFoundException;
 import com.lms.courseManagementService.mapper.LessonMapper;
-import com.lms.courseManagementService.model.dto.request.LessonRequest;
-import com.lms.courseManagementService.model.dto.response.LessonResponse;
 import com.lms.courseManagementService.model.entity.Lesson;
 import com.lms.courseManagementService.repository.LessonRepository;
 import com.lms.courseManagementService.service.LessonService;
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.UUID;
-
 @Service
 @Transactional(readOnly=true)
-@RequiredArgsConstructor
+@Data
 public class LessonServiceImpl implements LessonService {
     private final LessonRepository lessonRepository;
     private final LessonMapper lessonMapper;
 
     @Override
     @Transactional
-    public LessonResponse save(LessonRequest lessonRequest) {
+    public LessonDTO save(LessonDTO lessonRequest) {
         Lesson lesson = lessonMapper.toEntity(lessonRequest);
         Lesson savedLesson = lessonRepository.save(lesson);
         return lessonMapper.toResponse(savedLesson);
@@ -30,14 +27,14 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     @Transactional
-    public LessonResponse update(Long id, LessonRequest lessonRequest) {
+    public LessonDTO update(Long id, LessonDTO lessonRequest) {
         Lesson existingLesson = this.findLessonById(id);
         lessonMapper.update(lessonRequest, existingLesson);
         return lessonMapper.toResponse(existingLesson);
     }
 
     @Override
-    public LessonResponse getById(Long id) {
+    public LessonDTO getById(Long id) {
         return lessonMapper.toResponse(this.findLessonById(id));
     }
 

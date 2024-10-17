@@ -1,35 +1,36 @@
 package com.lms.courseManagementService.model.entity;
 
 import com.lms.courseManagementService.model.enums.ContentType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 @Entity
 @Getter
 @Setter
-@ToString
-@SuperBuilder
+@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
-public class Lesson extends BaseEntity {
-    // todo: add this relationship after implementing Module entity
-//    @ManyToOne
-//    @JoinColumn(name="module_id", nullable=false)
-//    private Module module;
+@Builder
+@Table(name = "Lesson")
+public class Lesson {
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable=false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(name = "contenttype",nullable = false)
     private ContentType contentType;
 
+    @Column(name = "contenturl")
     private String contentUrl;
 
-    @Column(name = "\"order\"")
-    private Integer order;
+    @Column(name = "Lessonorder")
+    private Integer lessonOrder;
+
+    @ManyToOne
+    @JoinColumn(name = "module_id")
+    private Module module;
 
 }

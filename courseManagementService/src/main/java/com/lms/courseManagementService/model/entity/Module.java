@@ -1,9 +1,7 @@
-package com.lms.courseManagementService.model;
+package com.lms.courseManagementService.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
 
 @Entity
 @Getter
@@ -17,14 +15,14 @@ public class Module {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name="title")
     private String title;
+
+    @Column(name="description")
     private String description;
 
-    @Column(name = "[order]")
-    private int order;
-
-    @OneToMany(mappedBy = "module")
-    private List<Lesson> lessons;
+    @Column(name = "module_order")
+    private int moduleOrder;
 
     @ManyToOne
     @JoinColumn(name = "course_id")

@@ -1,16 +1,18 @@
 package com.lms.courseManagementService.mapper;
 
-import com.lms.courseManagementService.model.dto.request.LessonRequest;
-import com.lms.courseManagementService.model.dto.response.LessonResponse;
+import com.lms.courseManagementService.dto.LessonDTO;
 import com.lms.courseManagementService.model.entity.Lesson;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.factory.Mappers;
 
-@Mapper(componentModel="spring")
+@Mapper(componentModel = "spring")
 public interface LessonMapper {
-    LessonResponse toResponse(Lesson lesson);
 
-    Lesson toEntity(LessonRequest lessonRequest);
+    LessonMapper INSTANCE = Mappers.getMapper(LessonMapper.class);
+    LessonDTO toResponse(Lesson lesson);
 
-    void update(LessonRequest lessonRequest, @MappingTarget Lesson lesson);
+    Lesson toEntity(LessonDTO lessonRequest);
+
+    void update(LessonDTO lessonRequest, @MappingTarget Lesson lesson);
 }

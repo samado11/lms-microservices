@@ -1,35 +1,32 @@
 package com.lms.courseManagementService.controller;
 
+import com.lms.courseManagementService.dto.LessonDTO;
 import com.lms.courseManagementService.service.LessonService;
-import com.lms.courseManagementService.model.dto.request.LessonRequest;
-import com.lms.courseManagementService.model.dto.response.LessonResponse;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/lessons")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class LessonController {
     private final LessonService lessonService;
 
     @PostMapping
-    public ResponseEntity<LessonResponse> createLesson(@Validated @RequestBody LessonRequest lessonRequest) {
+    public ResponseEntity<LessonDTO> createLesson(@Validated @RequestBody LessonDTO lessonRequest) {
         return ResponseEntity.ok(lessonService.save(lessonRequest));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<LessonResponse> getLesson(@PathVariable Long id) {
+    public ResponseEntity<LessonDTO> getLesson(@PathVariable Long id) {
         return ResponseEntity.ok(lessonService.getById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<LessonResponse> updateLesson(
+    public ResponseEntity<LessonDTO> updateLesson(
             @PathVariable Long id,
-            @Validated @RequestBody LessonRequest lessonRequest
+            @Validated @RequestBody LessonDTO lessonRequest
     ) {
         return ResponseEntity.ok(lessonService.update(id, lessonRequest));
     }
