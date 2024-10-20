@@ -8,3 +8,16 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     registerWithEureka: true
     fetchRegistry: true
+
+spring:
+  datasource:
+    url: jdbc:postgresql://ep-noisy-truth-a8tqg0go.eastus2.azure.neon.tech/userManagement
+    username: userManagement_owner
+    password: YPBSExVb04Ay
+    driver-class-name: org.postgresql.Driver
+  application:
+    name: userManagementService
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

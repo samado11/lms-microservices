@@ -1,0 +1,13 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /content
+
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://omarabdelsamad7:Rqd9AmuMwAREQvqp@cluster0.h6xg3.mongodb.net/contentDB?retryWrites=true&w=majority
+      database: contentDB
+  application:
+    name: contentDeliveryService

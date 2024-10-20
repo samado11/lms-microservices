@@ -2,6 +2,12 @@ server:
   port: 8083
   servlet:
     context-path: /notification
+
+
 spring:
-  profiles:
-    active: native
+  data:
+    mongodb:
+      uri: mongodb+srv://omarabdelsamad7:Rqd9AmuMwAREQvqp@cluster0.h6xg3.mongodb.net/notificationDB?retryWrites=true&w=majority
+      database: notificationDB
+  application:
+    name: notificationService
