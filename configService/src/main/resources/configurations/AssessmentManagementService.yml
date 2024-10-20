@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://ep-still-mountain-a24ohleu.eu-central-1.aws.neon.tech/assessmentManagment
+    username: neondb_owner
+    password: fua5rVGlc8OI
+    driver-class-name: org.postgresql.Driver
+  application:
+    name: assessmentManagementService
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
