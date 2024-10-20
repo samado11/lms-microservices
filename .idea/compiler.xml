@@ -15,13 +15,22 @@
         <module name="gatewayService" />
         <module name="notificationService" />
         <module name="contentDeliveryService" />
-        <module name="courseManagementService" />
         <module name="userManagementService" />
         <module name="discoveryService" />
         <module name="progressTrackingService" />
         <module name="configService" />
         <module name="quizAssignmentService" />
         <module name="AuthService" />
+      </profile>
+      <profile name="Annotation profile for lms-microservices" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
+        </processorPath>
+        <module name="courseManagementService" />
       </profile>
     </annotationProcessing>
   </component>
