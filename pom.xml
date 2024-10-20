@@ -13,7 +13,7 @@
         <module>courseManagementService</module>
         <module>enrollmentService</module>
         <module>contentDeliveryService</module>
-        <module>quizAssignmentService</module>
+        <module>AssessmentManagementService</module>
         <module>progressTrackingService</module>
         <module>discussionForumService</module>
         <module>notificationService</module>

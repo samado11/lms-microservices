@@ -1,4 +1,4 @@
-package com.lms.quizAssignmentService;
+package com.lms.assessmentManagmentService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
