@@ -11,19 +11,15 @@
     <modules>
         <module>userManagementService</module>
         <module>courseManagementService</module>
-        <module>enrollmentService</module>
         <module>contentDeliveryService</module>
         <module>AssessmentManagementService</module>
-        <module>progressTrackingService</module>
         <module>discussionForumService</module>
         <module>notificationService</module>
         <module>billingPaymentService</module>
         <module>reportingAnalyticsService</module>
-        <module>adminManagementService</module>
         <module>configService</module>
         <module>gatewayService</module>
         <module>discoveryService</module>
-        <module>AuthService</module>
     </modules>
 
     <dependencyManagement>
