@@ -7,7 +7,7 @@ public interface AssessmentService {
 
     AssessmentDTO getById(Long id);
 
-    AssessmentDTO update(AssessmentDTO assessmentRequest);
+    AssessmentDTO update(Long id, AssessmentDTO assessmentRequest);
 
     void deleteById(Long id);
 }
