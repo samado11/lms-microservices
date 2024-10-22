@@ -9,8 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="discussionForumService" />
         <module name="reportingAnalyticsService" />
-        <module name="enrollmentService" />
-        <module name="adminManagementService" />
         <module name="billingPaymentService" />
         <module name="gatewayService" />
         <module name="notificationService" />
@@ -18,12 +16,16 @@
         <module name="courseManagementService" />
         <module name="userManagementService" />
         <module name="discoveryService" />
-        <module name="progressTrackingService" />
         <module name="configService" />
-        <module name="quizAssignmentService" />
-        <module name="AuthService" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="adminManagementService" target="1.8" />
+      <module name="AuthService" target="17" />
+      <module name="enrollmentService" target="1.8" />
+      <module name="progressTrackingService" target="1.8" />
+      <module name="quizAssignmentService" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
