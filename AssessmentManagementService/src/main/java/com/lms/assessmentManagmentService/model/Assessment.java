@@ -1,6 +1,5 @@
 package com.lms.assessmentManagmentService.model;
 
-import com.lms.courseManagementService.model.entity.Lesson;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,10 +18,10 @@ public class Assessment {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id", nullable=false)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name="lesson_id")
-    private Lesson lesson;
+// todo: ERROR-> Failed to initialize JPA EntityManagerFactory: Association 'com.lms.assessmentManagmentService.model.Assessment.lesson' targets the type 'com.lms.courseManagementService.model.entity.Lesson' which does not belong to the same persistence unit
+//    @ManyToOne
+//    @JoinColumn(name="lesson_id")
+//    private Lesson lesson;
 
     private String title;
 

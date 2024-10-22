@@ -18,9 +18,10 @@ public class AssessmentDTO {
     @Column(name="id", nullable=false)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="lesson_id")
-    private Lesson lesson;
+//    todo: add it after fixing the JPA error
+//    @ManyToOne
+//    @JoinColumn(name="lesson_id")
+//    private Lesson lesson;
 
     private String title;
 

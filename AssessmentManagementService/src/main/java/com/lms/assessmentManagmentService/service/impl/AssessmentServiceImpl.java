@@ -17,6 +17,7 @@ public class AssessmentServiceImpl implements AssessmentService {
     private final AssessmentRepository assessmentRepository;
     private final AssessmentMapper assessmentMapper;
 
+    // todo: handle the assessment.lesson and check if a lesson exists first.
     @Override
     @Transactional
     public AssessmentDTO save(AssessmentDTO assessmentRequest) {
