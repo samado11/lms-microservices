@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "assessments")
+@Table(name="assessments")
 public class Assessment {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,7 +27,7 @@ public class Assessment {
     private String title;
 
     @CreatedDate
-    @Column(name = "created_at")
+    @Column(name="created_at")
     private LocalDateTime createdAt;
 
 //    todo: to be added after making the submission entity

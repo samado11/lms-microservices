@@ -25,7 +25,7 @@ public class AssessmentDTO {
     private String title;
 
     @CreatedDate
-    @Column(name = "created_at")
+    @Column(name="created_at")
     private LocalDateTime createdAt;
 
 //    todo: to be added IFF needed or create an AssessmentDetailedDTO
