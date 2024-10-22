@@ -1,16 +1,14 @@
 package com.lms.courseManagementService.service;
 
-import com.lms.courseManagementService.model.dto.request.LessonRequest;
-import com.lms.courseManagementService.model.dto.response.LessonResponse;
+import com.lms.courseManagementService.dto.LessonDTO;
 
-import java.util.UUID;
 
 public interface LessonService {
-    LessonResponse save(LessonRequest lessonRequest);
+    LessonDTO save(LessonDTO lessonRequest);
 
-    LessonResponse update(Long id, LessonRequest lessonRequest);
+    LessonDTO update(Long id, LessonDTO lessonRequest);
 
-    LessonResponse getById(Long id);
+    LessonDTO getById(Long id);
 
     void deleteById(Long id);
 }

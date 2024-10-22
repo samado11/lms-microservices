@@ -1,6 +1,8 @@
 package com.lms.quizAssignmentService.dto;
 
-import lombok.Value;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -8,10 +10,12 @@ import java.time.LocalDateTime;
 /**
  * DTO for {@link com.lms.quizAssignmentService.model.Submission}
  */
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class SubmissionDto implements Serializable {
-    Long id;
-    LocalDateTime submittedAt;
-    int score;
-    Long assessmentId;
+    private Long id;
+    private LocalDateTime submittedAt;
+    private int score;
+    private Long assessmentId;
 }
