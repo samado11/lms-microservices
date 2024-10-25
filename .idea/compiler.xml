@@ -20,17 +20,8 @@
         <module name="discoveryService" />
         <module name="progressTrackingService" />
         <module name="configService" />
-        <module name="AuthService" />
-      </profile>
-      <profile name="Annotation profile for lms-microservices" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.2/mapstruct-processor-1.6.2.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.2/mapstruct-1.6.2.jar" />
-        </processorPath>
         <module name="quizAssignmentService" />
+        <module name="AuthService" />
       </profile>
     </annotationProcessing>
   </component>
