@@ -15,19 +15,29 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Assessment extends BaseEntity{
+@Table(name = "assessments")
+public class Assessment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "assessment_id")
+    private Long assessmentId;
 
     private String title;
+    private String description;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(name = "created_by")
+    private int createdBy;
+
     @OneToMany(mappedBy = "assessment")
-    private List<Submission> submissions;
+    private List<AssessmentResult> assessmentResults;
 
     @ManyToMany
     @JoinTable(
-            name = "assessment_question",
+            name = "assessment_questions",
             joinColumns = @JoinColumn(name = "assessment_id"),
             inverseJoinColumns = @JoinColumn(name = "question_id")
     )

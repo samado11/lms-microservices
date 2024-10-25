@@ -8,14 +8,14 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * DTO for {@link com.lms.quizAssignmentService.model.Submission}
+ * DTO for {@link com.lms.quizAssignmentService.model.AssessmentResult}
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SubmissionDto implements Serializable {
-    private Long id;
-    private LocalDateTime submittedAt;
+public class AssessmentResultDto implements Serializable {
+    private Long resultId;
     private int score;
+    private boolean passed;
     private Long assessmentId;
 }

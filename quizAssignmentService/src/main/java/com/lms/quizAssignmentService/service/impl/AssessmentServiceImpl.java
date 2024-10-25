@@ -5,10 +5,12 @@ import com.lms.quizAssignmentService.dto.AssessmentDto;
 import com.lms.quizAssignmentService.exception.AssessmentNotFoundException;
 import com.lms.quizAssignmentService.mapper.AssessmentMapper;
 
+import com.lms.quizAssignmentService.mapper.QuestionMapper;
 import com.lms.quizAssignmentService.model.Assessment;
 import com.lms.quizAssignmentService.model.Question;
 import com.lms.quizAssignmentService.repository.AssessmentRepository;
 
+import com.lms.quizAssignmentService.repository.QuestionRepository;
 import com.lms.quizAssignmentService.service.AssessmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,8 @@ import java.util.stream.Collectors;
 public class AssessmentServiceImpl implements AssessmentService {
     private final AssessmentRepository assessmentRepository;
     private final AssessmentMapper assessmentMapper;
+    private final QuestionMapper questionMapper;
+    private final QuestionRepository questionRepository;
 
 
 
@@ -44,42 +48,29 @@ public class AssessmentServiceImpl implements AssessmentService {
     @Override
     public AssessmentDto createAssessment(AssessmentDto assessmentDto) {
 
-        Assessment assessment = assessmentMapper.toEntity(assessmentDto);
-        List<Question> questions = assessmentDto.getQuestions().stream()
-                .map(questionDto -> {
-                    Question question = new Question();
-                    question.setQuestionText(questionDto.getQuestionText());
-                    question.setQuestionType(questionDto.getQuestionType());
-                    question.setSolution(questionDto.getSolution());
-                    return question;
-                })
-                .collect(Collectors.toList());
 
+
+        Assessment assessment = assessmentMapper.toEntity(assessmentDto);
+
+        List<Question> questions = createQuestions(assessmentDto);
+        for (Question question : questions) {
+            question = questionRepository.save(question);
+        }
         assessment.setQuestions(questions);
         Assessment savedAssessment = assessmentRepository.save(assessment);
-
         return assessmentMapper.toDto(savedAssessment);
     }
 
     @Transactional
     @Override
     public AssessmentDto updateAssessment(Long id,AssessmentDto assessmentDto) {
+
         Assessment existingAssessment = assessmentRepository.findById(id)
                 .orElseThrow(() -> new AssessmentNotFoundException("Assessment Not Found!"));
 
         existingAssessment.setTitle(assessmentDto.getTitle());
 
-        List<Question> questions = assessmentDto.getQuestions().stream()
-                .map(questionDto -> {
-                    Question question = new Question();
-                    question.setQuestionText(questionDto.getQuestionText());
-                    question.setQuestionType(questionDto.getQuestionType());
-                    question.setSolution(questionDto.getSolution());
-                    return question;
-                })
-                .collect(Collectors.toList());
-
-        existingAssessment.setQuestions(questions);
+        existingAssessment.setQuestions(createQuestions(assessmentDto));
 
         Assessment savedAssessment = assessmentRepository.save(existingAssessment);
 
@@ -94,7 +85,17 @@ public class AssessmentServiceImpl implements AssessmentService {
                 .ifPresentOrElse(assessmentRepository::delete, () -> {
                     throw new AssessmentNotFoundException("Assessment Not Found!");
                 });
-        ;
+
+
+    }
+
+
+    private List<Question> createQuestions(AssessmentDto assessmentDto){
+        List<Question> questions = assessmentDto.getQuestions().stream()
+                .map(questionMapper::toEntity)
+                .collect(Collectors.toList());
+
+        return questions;
 
     }
 

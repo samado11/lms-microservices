@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -14,14 +15,23 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Question extends BaseEntity {
+@Table(name = "questions")
+public class Question {
 
-    @Column(name = "question_type")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "question_id")
+    private Long questionId;
+
+    @Column(name = "question_text")
     private String questionText;
 
     @Column(name = "question_type")
     private QuestionType questionType;
-    private String solution;
+
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     @ManyToMany(mappedBy = "questions")
     private List<Assessment> assessments;
@@ -33,6 +43,9 @@ public class Question extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "option_id")
     )
     private List<Option> options;
+
+    @OneToMany(mappedBy = "question")
+    private List<StudentResponse> studentResponses;
 
 
 }

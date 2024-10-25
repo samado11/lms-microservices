@@ -1,9 +1,6 @@
 package com.lms.quizAssignmentService.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,11 +13,20 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Submission extends BaseEntity {
+@Table(name = "assessment_results")
+public class AssessmentResult {
 
-    @Column(name = "submitted_at")
-    private LocalDateTime submittedAt;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "result_id")
+    private Long resultId;
+
+    @Column(name = "completed_at")
+    private LocalDateTime completedAt;
+
     private int score;
+
+    private boolean passed;
 
     @ManyToOne
     @JoinColumn(name = "assessment_id")

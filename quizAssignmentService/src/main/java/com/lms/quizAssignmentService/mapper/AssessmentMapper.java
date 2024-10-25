@@ -2,14 +2,23 @@ package com.lms.quizAssignmentService.mapper;
 
 import com.lms.quizAssignmentService.dto.AssessmentDto;
 import com.lms.quizAssignmentService.model.Assessment;
-import org.mapstruct.*;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface AssessmentMapper {
-    Assessment toEntity(AssessmentDto assessmentDto);
+@Component
+@RequiredArgsConstructor
+public class AssessmentMapper {
 
-    AssessmentDto toDto(Assessment assessment);
+    private final ModelMapper modelMapper;
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Assessment partialUpdate(AssessmentDto assessmentDto, @MappingTarget Assessment assessment);
+    public AssessmentDto toDto(Assessment assessment) {
+        return modelMapper.map(assessment, AssessmentDto.class);
+    }
+
+    public Assessment toEntity(AssessmentDto assessmentDto) {
+        return modelMapper.map(assessmentDto, Assessment.class);
+    }
+
+
 }

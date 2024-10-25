@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -16,5 +17,7 @@ import java.util.List;
 public class OptionDto implements Serializable {
     private Long id;
     private String optionText;
+    private boolean isCorrect;
     private List<Long> questionIds;
+
 }

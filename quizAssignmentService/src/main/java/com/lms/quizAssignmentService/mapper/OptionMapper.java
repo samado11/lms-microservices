@@ -1,15 +1,23 @@
 package com.lms.quizAssignmentService.mapper;
 
+
 import com.lms.quizAssignmentService.dto.OptionDto;
 import com.lms.quizAssignmentService.model.Option;
-import org.mapstruct.*;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
-@Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
-public interface OptionMapper {
-    Option toEntity(OptionDto optionDto);
+@Component
+@RequiredArgsConstructor
+public class OptionMapper {
 
-    OptionDto toDto(Option option);
+    private final ModelMapper modelMapper;
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Option partialUpdate(OptionDto optionDto, @MappingTarget Option option);
+    public OptionDto toDto(Option option) {
+        return modelMapper.map(option, OptionDto.class);
+    }
+
+    public Option toEntity(OptionDto optionDto) {
+        return modelMapper.map(optionDto, Option.class);
+    }
 }
