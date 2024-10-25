@@ -16,9 +16,12 @@ public class ModuleEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
-    @ManyToOne()
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "course_id")
     private UUID course_id;
     private String title;
     private String description;
     private int order;
+    @OneToMany(mappedBy = "lessons", cascade = CascadeType.ALL)
+    private List<Lessons> lessonsList;
 }
