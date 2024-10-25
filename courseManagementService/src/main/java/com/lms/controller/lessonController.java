@@ -1,13 +1,15 @@
 package com.lms.controller;
 
-import com.lms.repo.Leo_Repo;
-import com.lms.service.service;
 import com.lms.model.lesson;
+import com.lms.service.service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@RestController
 public class lessonController {
-    com.lms.service.service service = new service();
-    Leo_Repo repo;
+    @Autowired
+    service service;
+    //Repo repo;
     @GetMapping("/{id}")
     public lesson getlessons(@PathVariable("id") long id) {
         return service.getlessons(id);
