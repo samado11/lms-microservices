@@ -1,14 +1,16 @@
 package com.lms.service;
 
-import com.lms.repo.Leo_Repo;
 import com.lms.ecxeption.ResourceNotFoundException;
 import com.lms.model.lesson;
+import com.lms.repo.Repo;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+@Service
 public class service {
 
-    Leo_Repo repo;
+    Repo repo;
     public lesson getlessons(@PathVariable("id") long id) {
         return repo.findById(id).orElse(null);
     }
