@@ -12,7 +12,7 @@
         <module>userManagementService</module>
         <module>courseManagementService</module>
         <module>contentDeliveryService</module>
-        <module>AssessmentManagementService</module>
+        <module>AssessmentManagmentService</module>
         <module>discussionForumService</module>
         <module>notificationService</module>
         <module>billingPaymentService</module>
