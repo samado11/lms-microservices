@@ -3,6 +3,8 @@ package com.lms.courseManagementService.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -27,6 +29,9 @@ public class Module {
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "module")
+    private List<Lesson> lessons;
 
 
 }

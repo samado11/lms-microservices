@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/courses")
 @AllArgsConstructor
@@ -18,17 +20,23 @@ public class CourseController {
         return ResponseEntity.ok(courseService.save(courseRequest));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public ResponseEntity<CourseDTO> getCourse(@PathVariable Long id) {
         return ResponseEntity.ok(courseService.getById(id));
     }
 
-    @PutMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping()
+    public ResponseEntity<List<CourseDTO>> getAllCourse() {
+        return ResponseEntity.ok(courseService.getAll());
+    }
+
+    @PutMapping()
     public ResponseEntity<CourseDTO> updateCourse(
-            @PathVariable Long id,
             @Validated @RequestBody CourseDTO courseRequest
     ) {
-        return ResponseEntity.ok(courseService.update(id, courseRequest));
+        return ResponseEntity.ok(courseService.update(courseRequest));
     }
 
     @DeleteMapping("/{id}")

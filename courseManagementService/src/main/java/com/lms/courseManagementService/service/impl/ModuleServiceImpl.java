@@ -26,7 +26,7 @@ public class ModuleServiceImpl implements ModuleService {
     public List<ModuleDTO> getAll() {
 
         return moduleRepository.findAll()
-                .stream().map(moduleMapper::toResponse)
+                .stream().map(moduleMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
@@ -35,7 +35,7 @@ public class ModuleServiceImpl implements ModuleService {
 
         Module module = moduleRepository.findById(id)
                 .orElseThrow(() -> new ModuleNotFoundException(id));
-        return moduleMapper.toResponse(module);
+        return moduleMapper.toDTO(module);
     }
 
     @Override
@@ -50,25 +50,26 @@ public class ModuleServiceImpl implements ModuleService {
 
         Module module = moduleMapper.toEntity(request);
         Module savedModule = moduleRepository.save(module);
-        return moduleMapper.toResponse(savedModule);
+        return moduleMapper.toDTO(savedModule);
 
     }
 
 
 
     @Transactional
-    public ModuleDTO update(Long id, ModuleDTO request) {
-        Module existingModule = moduleRepository.findById(id)
-                .orElseThrow(() -> new ModuleNotFoundException(id));
-        moduleMapper.update(request, existingModule);
-        return moduleMapper.toResponse(existingModule);
+    public ModuleDTO update(ModuleDTO request) {
+        Module existingModule = moduleRepository.findById(request.getId())
+                .orElseThrow(() -> new ModuleNotFoundException(request.getId()));
+
+        moduleRepository.save(moduleMapper.toEntity(request));
+        return request;
     }
 
     public List<ModuleDTO> getModulesByCourseTitle(String courseTitle) {
 
         return moduleRepository.findByTitle(courseTitle)
                 .stream()
-                .map(moduleMapper::toResponse)
+                .map(moduleMapper::toDTO)
                 .collect(Collectors.toList());
     }
 

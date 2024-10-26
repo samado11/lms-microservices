@@ -131,7 +131,7 @@ public class ModuleServiceTests {
         when(modulesRepository.findById(module1.getId())).thenReturn(Optional.of(module1));
         when(modulesRepository.save(module1)).thenReturn(module1);
 
-        ModuleDTO updatedModule = moduleService.update(module1.getId(),moduleDTO);
+        ModuleDTO updatedModule = moduleService.update(moduleDTO);
         Assertions.assertNotNull(updatedModule);
     }
 

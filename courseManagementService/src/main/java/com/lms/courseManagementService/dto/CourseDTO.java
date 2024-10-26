@@ -2,6 +2,8 @@ package com.lms.courseManagementService.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,5 +16,6 @@ public class CourseDTO  {
     private String title;
     private String description;
     private String category;
+    private List<ModuleDTO> modules;
 
 }

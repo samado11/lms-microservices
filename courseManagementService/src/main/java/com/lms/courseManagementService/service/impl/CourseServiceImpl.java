@@ -10,6 +10,9 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional(readOnly=true)
 @Data
@@ -22,20 +25,25 @@ public class CourseServiceImpl implements CourseService {
     public CourseDTO save(CourseDTO courseRequest) {
         Course course = courseMapper.toEntity(courseRequest);
         Course savedCourse = courseRepository.save(course);
-        return courseMapper.toResponse(savedCourse);
+        return courseMapper.toDTO(savedCourse);
     }
 
     @Override
     @Transactional
-    public CourseDTO update(Long id, CourseDTO courseRequest) {
-        Course existingCourse = this.findCourseById(id);
-        courseMapper.update(courseRequest, existingCourse);
-        return courseMapper.toResponse(existingCourse);
+    public CourseDTO update(CourseDTO courseRequest) {
+        Course existingCourse = this.findCourseById(courseRequest.getId());
+        courseRepository.save(courseMapper.toEntity(courseRequest));
+        return courseRequest;
     }
 
     @Override
     public CourseDTO getById(Long id) {
-        return courseMapper.toResponse(this.findCourseById(id));
+        return courseMapper.toDTO(this.findCourseById(id));
+    }
+
+    @Override
+    public List<CourseDTO> getAll() {
+        return courseRepository.findAll().stream().map(courseMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override

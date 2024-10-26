@@ -10,6 +10,9 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional(readOnly=true)
 @Data
@@ -22,20 +25,24 @@ public class LessonServiceImpl implements LessonService {
     public LessonDTO save(LessonDTO lessonRequest) {
         Lesson lesson = lessonMapper.toEntity(lessonRequest);
         Lesson savedLesson = lessonRepository.save(lesson);
-        return lessonMapper.toResponse(savedLesson);
+        return lessonMapper.toDTO(savedLesson);
     }
 
     @Override
     @Transactional
-    public LessonDTO update(Long id, LessonDTO lessonRequest) {
-        Lesson existingLesson = this.findLessonById(id);
-        lessonMapper.update(lessonRequest, existingLesson);
-        return lessonMapper.toResponse(existingLesson);
+    public LessonDTO update(LessonDTO lessonRequest) {
+        Lesson existingLesson = this.findLessonById(lessonRequest.getId());
+        lessonRepository.save(lessonMapper.toEntity(lessonRequest));
+        return lessonRequest;
     }
 
     @Override
     public LessonDTO getById(Long id) {
-        return lessonMapper.toResponse(this.findLessonById(id));
+        return lessonMapper.toDTO(this.findLessonById(id));
+    }
+    @Override
+    public List<LessonDTO> getAll() {
+        return lessonRepository.findAll().stream().map(lessonMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.List;
 public class ModuleController {
     private final ModuleService moduleService;
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<List<ModuleDTO>> getAll() {
 
         List<ModuleDTO> moduleDTOS = moduleService.getAll();
@@ -35,9 +35,9 @@ public class ModuleController {
             return response;
     }
 
-    @PutMapping("/{moduleID}")
-    public ModuleDTO updateModule(@PathVariable("moduleID") Long moduleID, @RequestBody ModuleDTO moduleDTO) {
-            ModuleDTO response = moduleService.update(moduleID, moduleDTO);
+    @PutMapping()
+    public ModuleDTO updateModule(@RequestBody ModuleDTO moduleDTO) {
+            ModuleDTO response = moduleService.update(moduleDTO);
             return response;
     }
 

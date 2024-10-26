@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/lessons")
 @AllArgsConstructor
@@ -23,12 +25,16 @@ public class LessonController {
         return ResponseEntity.ok(lessonService.getById(id));
     }
 
-    @PutMapping("/{id}")
+    @GetMapping()
+    public ResponseEntity<List<LessonDTO>> getAll() {
+        return ResponseEntity.ok(lessonService.getAll());
+    }
+
+    @PutMapping()
     public ResponseEntity<LessonDTO> updateLesson(
-            @PathVariable Long id,
             @Validated @RequestBody LessonDTO lessonRequest
     ) {
-        return ResponseEntity.ok(lessonService.update(id, lessonRequest));
+        return ResponseEntity.ok(lessonService.update(lessonRequest));
     }
 
     @DeleteMapping("/{id}")

@@ -14,5 +14,5 @@ public class LessonDTO {
     private String contentUrl;
     private int lessonOrder;
     private ContentType contentType;
-    private ModuleDTO moduleDTO;
+    private ModuleDTO module;
 }

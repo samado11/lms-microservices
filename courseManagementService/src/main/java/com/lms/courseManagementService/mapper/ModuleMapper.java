@@ -3,17 +3,48 @@ package com.lms.courseManagementService.mapper;
 
 import com.lms.courseManagementService.dto.ModuleDTO;
 import com.lms.courseManagementService.model.entity.Module;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public interface ModuleMapper {
+import java.util.stream.Collectors;
 
-    ModuleMapper INSTANCE = Mappers.getMapper(ModuleMapper.class);
-    ModuleDTO toResponse(Module module);
 
-    Module toEntity(ModuleDTO lessonRequest);
+@Component
+public class ModuleMapper {
 
-    void update(ModuleDTO lessonRequest, @MappingTarget Module module);
+    @Autowired
+    private CourseMapper courseMapper;
+
+    @Autowired
+    private LessonMapper lessonMapper;
+
+
+    public ModuleDTO toDTO(Module module) {
+        if (module == null) {
+            return null;
+        }
+        ModuleDTO moduleDTO = new ModuleDTO();
+        moduleDTO.setId(module.getId());
+        moduleDTO.setTitle(module.getTitle());
+        moduleDTO.setDescription(module.getDescription());
+        moduleDTO.setModuleOrder(module.getModuleOrder());
+
+        moduleDTO.setLessons(module.getLessons().stream().map(lesson -> lessonMapper.toDTO(lesson)).collect(Collectors.toList()));
+        return moduleDTO;
+    }
+
+    public Module toEntity(ModuleDTO moduleDTO) {
+        if (moduleDTO == null) {
+            return null;
+        }
+
+        Module module = new Module();
+        module.setId(moduleDTO.getId());
+        module.setTitle(moduleDTO.getTitle());
+        module.setDescription(moduleDTO.getDescription());
+        module.setModuleOrder(moduleDTO.getModuleOrder());
+        module.setCourse(courseMapper.toEntity(moduleDTO.getCourse()));
+        return module;
+    }
+
 }

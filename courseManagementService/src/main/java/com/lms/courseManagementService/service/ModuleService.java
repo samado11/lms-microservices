@@ -10,7 +10,7 @@ public interface ModuleService {
 
     ModuleDTO save(ModuleDTO lessonRequest);
 
-    ModuleDTO update(Long id, ModuleDTO lessonRequest);
+    ModuleDTO update(ModuleDTO lessonRequest);
 
     ModuleDTO getById(Long id);
 
